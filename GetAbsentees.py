@@ -1,9 +1,6 @@
-!pip install python-pptx
 import pandas as pd
-from pptx import Presentation
-ppt_file_name = 'STE CDCS Promotion Ceremony Deck 2025 v1'
-excel_file = '2025-07-10 CDCS.xlsx'
-excel_file2 = '2025-07-10 CDCS-Diff.xlsx'
+excel_file = '2025-07-10 CDCS-Masterlist.xlsx'
+excel_file2 = '2025-07-10 CDCS-Absent.xlsx'
 # Load the Excel file with multiple sheets
 xls = pd.ExcelFile(excel_file)
 xls2 = pd.ExcelFile(excel_file2)
@@ -27,6 +24,6 @@ missing_names = fullDf.loc[
 ]
 
 #Create absentee sheet in excel
-with pd.ExcelWriter("2025-07-10 CDCS-Diff.xlsx", engine="openpyxl", mode="a") as writer:
+with pd.ExcelWriter("2025-07-10 CDCS-Absent.xlsx", engine="openpyxl", mode="a") as writer:
     missing_names.to_excel(writer, sheet_name="MSS_Absent", index=False)
 
