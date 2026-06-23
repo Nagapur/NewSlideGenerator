@@ -6,7 +6,6 @@ excel_file = '2025-07-10 CDCS-Diff.xlsx'
 # Load the Excel file with multiple sheets
 xls = pd.ExcelFile(excel_file)
 
-
 # Load the existing PowerPoint presentation
 prs = Presentation(ppt_file_name + ".pptx")
 # Function to get a slide layout by name
@@ -15,6 +14,7 @@ def get_layout_by_name(prs, layout_name):
         if layout.name == layout_name:
             return layout
     return None
+    
 # Function to print placeholder details, to know what their names are
 def print_placeholder_details(placeholders):
     for placeholder in placeholders:
@@ -46,7 +46,7 @@ def add_M_title_slide():
 
 #Create slides by section and grade
 def create_slides():
-
+    
     # Read all sheets once
     dfs = pd.read_excel(excel_file, sheet_name=None, engine='openpyxl')
 
@@ -81,7 +81,6 @@ def create_slides():
         # Insert M section slide when switching from E → M
         if prev_grade == 'E' and row.Grade == 'M':
           add_M_title_slide()
-
 
         # Get layout for current sheet
         slide_layout = get_layout_by_name(prs, sheet_name)
@@ -126,7 +125,6 @@ def create_absent_slides(sheet_name):
 
     # Loop through rows
     for row in dfs.itertuples():
-
 
         # Insert M section slide when switching from E → M
         if prev_grade == 'E' and row.Grade == 'M':
